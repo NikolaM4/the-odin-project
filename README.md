@@ -3,3 +3,5 @@
 ## [Odin Recipes](odin-recipes)
 
 ## [CSS Exercises](css-exercises)
+
+## [Landing page](landing-page)
