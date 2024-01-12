@@ -18,13 +18,14 @@ function createGrid(gridRows) {
     }
 }
 
-let gridRows = 64;
+let gridRows = 16;
 createGrid(gridRows);
 
 buttonChangeGrid.addEventListener("click", (e) => {
   gridRows = parseInt(prompt("How many squares per side do you want?"));
-
-  // while (gridRows < 1 || gridRows >= 100 || typeof rows != "number") {
-  //   gridRows = prompt("You can't enter that. Type number:");
-  // }
+  while (gridRows < 1 || gridRows >= 100 || isNaN(gridRows)) {
+    gridRows = parseInt(prompt("Invalid enter. Enter new number"));
+  }
+  divContainer.innerHTML = "";
+  createGrid(gridRows);
 });
