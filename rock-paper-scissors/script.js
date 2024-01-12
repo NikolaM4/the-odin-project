@@ -21,19 +21,81 @@ function playRound(playerSelection, computerSelection) {
   return;
 }
 
-function game() {
-  let playerSelection;
-  let computerSelection = getComputerChoice();
-  let playerScore = 0;
-  let computerScore = 0;
-  let result = "";
-  for (let i = 1; i <= 5; i++) {
-    playerSelection = prompt("Input Rock, Paper or Scissors");
-    computerSelection = getComputerChoice();
-    result.includes("Win") ? playerScore++ : computerScore++;
-    console.log(result);
+let playerSelection;
+let computerSelection = getComputerChoice();
+let playerScore = 0;
+let computerScore = 0;
+let result = "";
+
+let divResults = document.createElement("div");
+divResults.textContent = `${playerScore} : ${computerScore}`;
+
+let buttonRock = document.createElement("button");
+let buttonPaper = document.createElement("button");
+let buttonScissors = document.createElement("button");
+
+buttonRock.textContent = "Rock";
+buttonPaper.textContent = "Paper";
+buttonScissors.textContent = "Scissors";
+
+document.body.appendChild(divResults);
+document.body.appendChild(buttonRock);
+document.body.appendChild(buttonPaper);
+document.body.appendChild(buttonScissors);
+
+function checkWinner(playerScorem, computerScore) {
+  if (playerScore == 5) {
+    divResults.textContent += "You Win!";
+    buttonRock.disabled = true;
+    buttonPaper.disabled = true;
+    buttonScissors.disabled = true;
   }
-  playerScore > computerScore ? console.log("You Win!") : console.log("You Lose!");
+  if (computerScore == 5) {
+    divResults.textContent += "You Lose!";
+    buttonRock.disabled = true;
+    buttonPaper.disabled = true;
+    buttonScissors.disabled = true;
+  }
 }
 
-game();
+buttonRock.addEventListener("click", () => {
+  playerSelection = "rock";
+  computerSelection = getComputerChoice();
+  result = playRound(playerSelection, computerSelection);
+  if (result.includes("Win")) {
+    playerScore++;
+    divResults.textContent = `${playerScore} : ${computerScore}`;
+  } else if (result.includes("Lose")) {
+    computerScore++;
+    divResults.textContent = `${playerScore} : ${computerScore}`;
+  }
+  checkWinner(playerScore, computerScore);
+});
+
+buttonPaper.addEventListener("click", () => {
+  playerSelection = "paper";
+  computerSelection = getComputerChoice();
+  result = playRound(playerSelection, computerSelection);
+  if (result.includes("Win")) {
+    playerScore++;
+    divResults.textContent = `${playerScore} : ${computerScore}`;
+  } else if (result.includes("Lose")) {
+    divResults.textContent = `${playerScore} : ${computerScore}`;
+    computerScore++;
+  }
+  checkWinner(playerScore, computerScore);
+});
+
+buttonScissors.addEventListener("click", () => {
+  playerSelection = "scissors";
+  computerSelection = getComputerChoice();
+  result = playRound(playerSelection, computerSelection);
+  if (result.includes("Win")) {
+    playerScore++;
+    divResults.textContent = `${playerScore} : ${computerScore}`;
+  } else if (result.includes("Lose")) {
+    divResults.textContent = `${playerScore} : ${computerScore}`;
+    computerScore++;
+  }
+  checkWinner(playerScore, computerScore);
+});
