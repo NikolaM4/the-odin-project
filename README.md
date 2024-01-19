@@ -6,4 +6,8 @@
 
 ## [Landing page](landing-page)
 
+## [JavaScript exercises](javascript-exercises)
+
 ## [Rock Paper Scissors](rock-paper-scissors)
+
+## [Calculator](calculator)
