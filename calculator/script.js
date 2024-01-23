@@ -25,8 +25,10 @@ function operate(number1, operator, number2) {
   else if (operator == "/") divide(number1, number2);
 }
 
-let displayValue = "0";
+let displayValue = "";
 let display = document.querySelector("#display");
+let displayOperator = document.querySelector("#displayOperator");
+let displayOperatorValue = "";
 number1 = displayValue;
 
 let buttons = document.querySelectorAll(".calculatorButton");
@@ -39,6 +41,8 @@ buttons.forEach((button) => {
   if (button.id == "button_=")
     button.addEventListener("click", () => {
       (displayValue = "gdshgds"), displayResult();
+      displayOperatorValue = "";
+      displayOperation();
     });
   else if (button.id == "button_C") {
     button.addEventListener("click", () => {
@@ -47,35 +51,35 @@ buttons.forEach((button) => {
     });
   } else if (button.id == "button_+") {
     button.addEventListener("click", () => {
-      if (numberOfOperators == 1) displayValue = displayValue.slice(0, -1);
+      if (numberOfOperators == 1) displayOperatorValue = displayOperatorValue.slice(0, -1);
       currentOperator = "+";
-      displayValue += currentOperator;
+      displayOperatorValue += currentOperator;
       numberOfOperators = 1;
-      displayResult();
+      displayOperation();
     });
   } else if (button.id == "button_-") {
     button.addEventListener("click", () => {
-      console.log("idemo");
-      if (numberOfOperators == 1) displayValue = displayValue.slice(0, -1);
+      if (numberOfOperators == 1) displayOperatorValue = displayOperatorValue.slice(0, -1);
       currentOperator = "-";
-      displayValue += currentOperator;
+      displayOperatorValue += currentOperator;
       numberOfOperators = 1;
-      displayResult();
+      displayOperation();
     });
   } else if (button.id == "button_*") {
     button.addEventListener("click", () => {
-      if (numberOfOperators == 1) displayValue = displayValue.slice(0, -1);
+      if (numberOfOperators == 1) displayOperatorValue = displayOperatorValue.slice(0, -1);
       currentOperator = "*";
-      displayValue += currentOperator;
+      displayOperatorValue += currentOperator;
       numberOfOperators = 1;
-      displayResult();
+      displayOperation();
     });
   } else if (button.id == "button_/") {
     button.addEventListener("click", () => {
-      if (numberOfOperators == 1) currentOperator = "/";
-      displayValue += currentOperator;
+      if (numberOfOperators == 1) if (numberOfOperators == 1) displayOperatorValue = displayOperatorValue.slice(0, -1);
+      currentOperator = "/";
+      displayOperatorValue += currentOperator;
       numberOfOperators = 1;
-      displayResult();
+      displayOperation();
     });
   } else {
     button.addEventListener("click", () => {
@@ -87,4 +91,8 @@ buttons.forEach((button) => {
 
 function displayResult() {
   display.innerHTML = displayValue;
+}
+
+function displayOperation() {
+  displayOperator.innerHTML = displayOperatorValue;
 }
